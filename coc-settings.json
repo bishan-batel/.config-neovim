@@ -44,5 +44,12 @@
     }
   },
   "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "scss", "sass"]
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "scss",
+    "sass"
+  ],
+  "Lua.telemetry.enable": false,
+  "colors.filetypes": ["*"]
 }

@@ -17,19 +17,26 @@ Plug 'sainnhe/edge'
 Plug 'phanviet/vim-monokai-pro'
 Plug 'dunstontc/vim-vscode-theme'
 Plug 'tomasiser/vim-code-dark'
-
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'camspiers/animate.vim'
-"Plug 'camspiers/lens.vim'
+
+" Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'github/copilot.vim'
+Plug 'IngoMeyer441/coc_current_word'
+
+Plug 'OmniSharp/omnisharp-vim'
 
 
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'honza/vim-snippets'
 Plug 'voldikss/vim-floaterm'
-
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
+Plug  'itchyny/lightline.vim'
 Plug 'vim-scripts/SyntaxComplete'
+Plug 'Eric-Song-Nop/vim-glslx'
 " Dashboard
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'glepnir/dashboard-nvim'
@@ -46,7 +53,6 @@ Plug 'bishan-batel/celloscript'
 
 Plug 'fladson/vim-kitty'
 Plug 'bfrg/vim-cpp-modern'
-Plug 'tikhomirov/vim-glsl'
 
 " Nerd Tree
 Plug 'preservim/nerdcommenter'
@@ -54,7 +60,6 @@ Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'preservim/nerdtree' 
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
 
@@ -86,10 +91,19 @@ call plug#end()
 let mapleader = "m"
 
 " Theming ----------------------------------------------------------------------
-autocmd vimenter * ++nested colorscheme dark_plus
+autocmd vimenter * ++nested colorscheme tokyonight
+"let g:airline_theme = "tokyonight"
+
+" Lightline 
+let g:lightline = {'colorscheme': 'tokyonight'}
+
+" Tokyo Night 
+ let g:tokyonight_style = 'night' " available: night, storm
+ let g:tokyonight_enable_italic = 1
+ let g:tokyonight_current_word = 'bold'
+
 
 " Palenight
-let g:airline_theme = "codedark"
 let g:palenight_terminal_italics=1
 
 " Everforest
@@ -173,8 +187,6 @@ autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set sho
 function DashboardIfEmpty() 
     if @% == ""
         Dashboard
-    else
-        NERDTree
     endif
 endfunction
 autocmd VimEnter * call DashboardIfEmpty()
@@ -223,7 +235,7 @@ nnoremap <C-b> :NERDTreeToggle<CR>
 "nnoremap <C-b> :Hexplore <CR>
 
 " Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+"autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -314,6 +326,15 @@ nmap <silent> gd :call CocAction('jumpDefinition', 'split')<CR>
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
+
+" Coc Highlighting & Coc Current Word
+autocmd CursorHold * silent call CocActionAsync('highlight')
+let g:coc_current_word_filetypes = ['*']  " enable for all filtypes by default
+autocmd VimEnter * silent CocCurrentWordToggle
+
+command! -nargs=0 ColorForm call CocAction('colorPresentation')
+command! -nargs=0 ColorPick call CocAction('pickColor')
+
 " JSX Highlighting 
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
@@ -339,13 +360,6 @@ set conceallevel=1
 command! -nargs=* CF cd ~/code/<args> | :NERDTree | CD | :windcmd H 
 " -----------------------------------------------------------------------------
 
-
-" -----------------------------------------------------------------------------
-" GLSL 
-" -----------------------------------------------------------------------------
-set omnifunc=glsl#CompleteFunc
-" -----------------------------------------------------------------------------
-
 " -----------------------------------------------------------------------------
 " Hexdump
 " -----------------------------------------------------------------------------
@@ -357,6 +371,7 @@ command! -nargs=0 Hex set ft=xxd | :%!xxd
 " -----------------------------------------------------------------------------
 command! -nargs=* T :sp | :wincmd J | term <args>
 set shell=/usr/bin/zsh
+nmap <silent><C-T> :T<CR> :resize 10N<CR> i 
 " -----------------------------------------------------------------------------
 
 :tnoremap <Esc> <C-\><C-n>
@@ -380,14 +395,37 @@ let g:carbon_now_sh_options = {
 " -----------------------------------------------------------------------------
 let g:copilot_filetypes = {
     \ 'goose': v:true,
-    \ '.goose': v:true}
+    \ 'vim' : v:true
+    \}
+
+" -----------------------------------------------------------------------------
+" Telescope
+" -----------------------------------------------------------------------------
+nnoremap <C-P> <cmd>Telescope find_files theme=dropdown<cr>
+"nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+"nnoremap <leader>fb <cmd>Telescope buffers<cr>
+"nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" -----------------------------------------------------------------------------
 
 let g:copilot_node_command ="~/.nvm/versions/node/v16.15.0/bin/node"
 
-" Generic
+" Generic --
+nmap <C-Q> :q<CR>
+
 filetype plugin indent on
 syntax on
 set nocompatible
+
+set wrap! " no file wrapping 
+set swapfile! " no swap file
+set scrolloff=3 " scroll 3 lines in advance
+set colorcolumn=80
+set showtabline=2
+set signcolumn=yes
+
+
+" Tab config
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
