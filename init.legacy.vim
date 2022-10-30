@@ -1,10 +1,16 @@
-﻿:set shell=zsh
+﻿:set shell=fish
 ":!/home/bishan/.zshrc
 
 call plug#begin(stdpath('data') . '/plugged') 
 " General
+"
+Plug 'rubixninja314/vim-mcfunction'
+Plug 'twh2898/vim-scarpet'
 
-Plug 'bishan-batel/gooselang.vim'
+Plug 'Winseven4lyf/vim-bbcode'
+
+"Plug 'bishan-batel/gooselang.vim'
+Plug 'bishan-batel/donlang.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
@@ -19,6 +25,8 @@ Plug 'dunstontc/vim-vscode-theme'
 Plug 'tomasiser/vim-code-dark'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'camspiers/animate.vim'
+
+"Plug 'bishan-batel/goosemc.vim'
 
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
@@ -46,6 +54,9 @@ Plug 'glepnir/dashboard-nvim'
 "Plug 'beeender/Comrade'
 
 " personal
+
+Plug 'lervag/vimtex'
+Plug 'matze/vim-tex-fold'
 
 Plug 'bishan-batel/banalang.vim'
 Plug 'bishan-batel/bf-syntax'
@@ -207,7 +218,8 @@ command! -nargs=0 Neovide call OpenNeovide()
 
 "set guifont=monospace:18
 "set guifont=FantasqueSansMono\ Nerd\ Font\ Mono:h16
-set guifont=agave:h15
+"set guifont=agave:h15
+set guifont=JetBrains\ Nerd\ Font\ Mono:h15
 
 " system clipboard
 nmap <c-c> "+y
@@ -231,7 +243,7 @@ let g:NERDTreeWinPos = "right"
 
 " Start NERDTree and put the cursor back in the other window.
 
-nnoremap <C-b> :NERDTreeToggle<CR>
+"nnoremap <C-b> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 "nnoremap <C-b> :Hexplore <CR>
 
 " Open the existing NERDTree on each new tab.
@@ -335,6 +347,9 @@ autocmd VimEnter * silent CocCurrentWordToggle
 command! -nargs=0 ColorForm call CocAction('colorPresentation')
 command! -nargs=0 ColorPick call CocAction('pickColor')
 
+command! -nargs=0 CHeader :CocCommand clangd.switchSourceHeader 
+nmap <S-h> :CocCommand clangd.switchSourceHeader<cr>
+
 " JSX Highlighting 
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
@@ -369,7 +384,7 @@ command! -nargs=0 Hex set ft=xxd | :%!xxd
 " -----------------------------------------------------------------------------
 " Terminal 
 " -----------------------------------------------------------------------------
-command! -nargs=* T :sp | :wincmd J | term <args>
+command! -nargs=* T :sp | :wincmd J | :term <args>
 set shell=/usr/bin/zsh
 nmap <silent><C-T> :T<CR> :resize 10N<CR> i 
 " -----------------------------------------------------------------------------
@@ -410,6 +425,9 @@ nnoremap <C-P> <cmd>Telescope find_files theme=dropdown<cr>
 
 let g:copilot_node_command ="~/.nvm/versions/node/v16.15.0/bin/node"
 
+" Terminal Images 
+au BufEnter *.jpg,*.png,*.webp term timg %
+
 " Generic --
 nmap <C-Q> :q<CR>
 
@@ -420,7 +438,7 @@ set nocompatible
 set wrap! " no file wrapping 
 set swapfile! " no swap file
 set scrolloff=3 " scroll 3 lines in advance
-set colorcolumn=80
+"set colorcolumn=80
 set showtabline=2
 set signcolumn=yes
 
