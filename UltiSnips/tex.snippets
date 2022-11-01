@@ -1,0 +1,44 @@
+snippet \beg "begin{} / end{}" bA
+	\begin{$1}
+	$0
+	\end{$1}
+endsnippet
+
+# \begin{definition} snippet 
+snippet \def "\begin{definition} / \end{definition}" bA
+	\begin{definition}
+	$0
+	\end{definition}
+endsnippet
+
+# \begin{example} snippet
+snippet \ex "\begin{example} / \end{example}" bA
+	\begin{example}
+	$0
+	\end{example}
+endsnippet
+
+# \begin{thereom} snippet 
+snippet \th "\begin{theorem} / \end{theorem}" bA
+	\begin{theorem}
+	$0
+	\end{theorem}
+endsnippet
+
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+
+snippet -> "rightarrow" iA
+\to
+endsnippet
+
+snippet \bf "Boldface" iA
+\\textbf{$1}$0
+endsnippet
+
+snippet \center "Center" iA
+\\begin{center}
+$1
+\\end{center}
+endsnippet

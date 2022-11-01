@@ -1,4 +1,5 @@
 require("plugins")
 require("default")
 require("filemanage")
+require("snippets")
 require("vimtex")
