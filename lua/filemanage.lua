@@ -1,3 +1,7 @@
+-- A
+vim.keymap.set('n','<C-l>', ':tabnext<cr>')
+vim.keymap.set('n','<C-h>', ':tabprevious<cr>')
+
 -- Telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
