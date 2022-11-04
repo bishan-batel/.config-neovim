@@ -6,21 +6,21 @@ endsnippet
 
 # \begin{definition} snippet 
 snippet \def "\begin{definition} / \end{definition}" bA
-\begin{definition}
+\begin{definition}[$1]
 	$0
 \end{definition}
 endsnippet
 
 # \begin{example} snippet
 snippet \example "\begin{example} / \end{example}" bA
-\begin{example}
+\begin{example}[$1]
 	$0
 \end{example}
 endsnippet
 
 # \begin{thereom} snippet 
 snippet \thereom "\begin{theorem} / \end{theorem}" bA
-\begin{theorem}
+\begin{theorem}[$1]
 	$0
 \end{theorem}
 endsnippet
@@ -37,12 +37,6 @@ snippet \bf "Boldface" iA
 \\textbf{$1}$0
 endsnippet
 
-snippet \center "Center" iA
-\\begin{center}
-	$1
-\\end{center}
-endsnippet
-
 snippet \cite "Cite" iA
 \\cite{$1}$0
 endsnippet
@@ -53,3 +47,10 @@ snippet \math "Math" iA
 \\end{align*}
 endsnippet
 
+snippet \sqrt "Sqrt" iA
+\\sqrt{$1}$0
+endsnippet
+
+snippet \deriv "Derivative" iA
+\frac{\mathrm{d}$1}{\mathrm{d}$2}$0
+endsnippet
