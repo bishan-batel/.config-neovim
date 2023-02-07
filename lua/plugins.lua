@@ -4,6 +4,7 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 	use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 	use {'andymass/vim-matchup', event = 'VimEnter'}
+	use "EdenEast/nightfox.nvim" -- Packer
 
 	 --use {
    -- 'w0rp/ale',
@@ -54,4 +55,7 @@ return require('packer').startup(function(use)
 	use 'github/copilot.vim'
 	use 'sheerun/vim-polyglot'
 	use 'SirVer/ultisnips'
+	use 'elkowar/yuck.vim'
+
+	use { "catppuccin/nvim", as = "catppuccin" }
 end)
