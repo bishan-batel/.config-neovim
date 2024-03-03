@@ -5,6 +5,8 @@ return require('packer').startup(function(use)
 	use { 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
 	use { 'andymass/vim-matchup', event = 'VimEnter' }
 	use "EdenEast/nightfox.nvim" -- Packer
+	use 'ARM9/arm-syntax-vim'
+	use 'andweeb/presence.nvim'
 
 	use {
 		'nvim-lualine/lualine.nvim',
@@ -21,7 +23,25 @@ return require('packer').startup(function(use)
 	-- cmd = 'ALEEnable',
 	-- config = 'vim.cmd[[ALEEnable]]'
 	--}
-	use { 'neoclide/coc.nvim', branch = 'release' }
+	-- use { 'neoclide/coc.nvim', branch = 'release' }
+	--
+
+	use {
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v3.x',
+		requires = {
+			--- Uncomment the two plugins below if you want to manage the language servers from neovim
+			-- {'williamboman/mason.nvim'},
+			-- {'williamboman/mason-lspconfig.nvim'},
+
+			-- LSP Support
+			{ 'neovim/nvim-lspconfig' },
+			-- Autocompletion
+			{ 'hrsh7th/nvim-cmp' },
+			{ 'hrsh7th/cmp-nvim-lsp' },
+			{ 'L3MON4D3/LuaSnip' },
+		}
+	}
 
 	use {
 		'haorenW1025/completion-nvim',
@@ -35,6 +55,13 @@ return require('packer').startup(function(use)
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 	use 'nvim-treesitter/playground'
 
+
+	use "nvim-lua/plenary.nvim" -- don't forget to add this one if you don't have it yet!
+	use {
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		requires = { { "nvim-lua/plenary.nvim" } }
+	}
 	--	use {
 	--		'nvim-treesitter/nvim-treesitter',
 	--		run = function()
@@ -52,7 +79,7 @@ return require('packer').startup(function(use)
 	use { 'folke/tokyonight.nvim', as = 'tokyonight' }
 
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.0',
+		'nvim-telescope/telescope.nvim', tag = '0.1.5',
 		requires = { { 'nvim-lua/plenary.nvim' } }
 	}
 
@@ -70,6 +97,9 @@ return require('packer').startup(function(use)
 	use 'sheerun/vim-polyglot'
 	use 'SirVer/ultisnips'
 	use 'elkowar/yuck.vim'
+	use 'wakatime/vim-wakatime'
 
 	use { "catppuccin/nvim", as = "catppuccin" }
+	use 'mbbill/undotree'
+	use 'tpope/vim-fugitive'
 end)
