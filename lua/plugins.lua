@@ -2,6 +2,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
+	use 'twh2898/vim-scarpet'
 	use { 'tpope/vim-dispatch', opt = true, cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
 	use { 'andymass/vim-matchup', event = 'VimEnter' }
 	use "EdenEast/nightfox.nvim" -- Packer
@@ -30,9 +31,8 @@ return require('packer').startup(function(use)
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v3.x',
 		requires = {
-			--- Uncomment the two plugins below if you want to manage the language servers from neovim
-			-- {'williamboman/mason.nvim'},
-			-- {'williamboman/mason-lspconfig.nvim'},
+			 {'williamboman/mason.nvim'},
+			 {'williamboman/mason-lspconfig.nvim'},
 
 			-- LSP Support
 			{ 'neovim/nvim-lspconfig' },
@@ -42,6 +42,8 @@ return require('packer').startup(function(use)
 			{ 'L3MON4D3/LuaSnip' },
 		}
 	}
+
+	use "rafamadriz/friendly-snippets"
 
 	use {
 		'haorenW1025/completion-nvim',
@@ -57,11 +59,13 @@ return require('packer').startup(function(use)
 
 
 	use "nvim-lua/plenary.nvim" -- don't forget to add this one if you don't have it yet!
+
 	use {
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		requires = { { "nvim-lua/plenary.nvim" } }
 	}
+
 	--	use {
 	--		'nvim-treesitter/nvim-treesitter',
 	--		run = function()
@@ -102,4 +106,8 @@ return require('packer').startup(function(use)
 	use { "catppuccin/nvim", as = "catppuccin" }
 	use 'mbbill/undotree'
 	use 'tpope/vim-fugitive'
+
+	use 'llathasa-veleth/vim-brainfuck'
+	use '9999years/befunge.vim'
+	use 'zoomlogo/vim-apl'
 end)

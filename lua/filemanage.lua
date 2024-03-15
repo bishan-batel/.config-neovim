@@ -1,6 +1,6 @@
 -- A
--- vim.keymap.set('n', '<C-l>', ':tabnext<cr>')
--- vim.keymap.set('n', '<C-h>', ':tabprevious<cr>')
+vim.keymap.set('n', '<C-l>', ':tabnext<cr>')
+vim.keymap.set('n', '<C-h>', ':tabprevious<cr>')
 
 -- Telescope
 local builtin = require('telescope.builtin')
