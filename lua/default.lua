@@ -6,46 +6,16 @@ function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-vim.opt.number = true
-vim.opt.rnu = true
-vim.opt.hlsearch = false
-vim.opt.wrap = false
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-vim.opt.autoindent = true
 vim.g.mapleader = "m"
 vim.opt.shell = "/usr/bin/fish"
 
-
-require("catppuccin").setup({
-	transparent_background = true
-})
-
-if vim.g.neovide then
-	vim.o.guifont = "JetBrainsMono Nerd Font:h13"
-
-	local alpha = function()
-		return string.format("%x", math.floor(255 * (vim.g.transparency or 0.8)))
-	end
-	vim.g.neovide_transparency = 0.8
-	vim.g.transparency = 0.8
-	vim.g.neovide_background_color = "#24273A" .. alpha()
-
-	require("catppuccin").setup({
-		transparent_background = false
-	})
-
-	vim.keymap.set('n', '<D-s>', ':w<CR>')     -- Save
-	vim.keymap.set('v', '<D-c>', '"+y')        -- Copy
-	vim.keymap.set('n', '<D-v>', '"+P')        -- Paste normal mode
-	vim.keymap.set('v', '<D-v>', '"+P')        -- Paste visual mode
-	vim.keymap.set('c', '<D-v>', '<C-R>+')     -- Paste command mode
-	vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
-end
-
 vim.opt.modeline = true
 vim.opt.modelines = 5
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+-- vim.opt.undodir = os.getenv("HOME") .. "../.vim/undodir"
+
 
 vim.cmd [[set conceallevel=1]]
 vim.cmd [[syntax enable]]
@@ -56,13 +26,6 @@ require("tokyonight").setup({
 		sidebars = "data",
 		floats = "dark"
 	}
-})
-
---nightfox
-require("nightfox").setup({
-	options = {
-		transparent = true,
-	},
 })
 
 -- gruvbox
@@ -80,9 +43,3 @@ vim.api.nvim_create_user_command("T", function(opts)
 	vim.cmd [[ wincmd j]]
 	vim.cmd("term " .. opts.args)
 end, { nargs = "?" })
-
-
--- colorscheme
---vim.cmd [[colorscheme carbonfox]]
---vim.cmd [[colorscheme catppuccin-macchiato]]
-vim.cmd [[colorscheme catppuccin-mocha]]

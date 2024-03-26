@@ -1,15 +1,23 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("plugins")
-require("statusline")
-require("ts")
--- require("coc")
-require("lsp")
-require("default")
-require("filemanage")
-require("snippets")
-require("vimtex")
-require("discord-rpc")
---require("harpoon")
-require("fugitive")
+
+local confs = {
+  "plugins",
+  "default",
+  "statusline",
+  "ts",
+  "lsp",
+  "filemanage",
+  "snippets",
+  "vimtex",
+  "discord-rpc",
+  "fugitive",
+  "ui",
+  "debug-adapt",
+  "neovide",
+}
+
+for _, file in pairs(confs) do
+  require(file)
+end
