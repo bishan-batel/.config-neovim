@@ -9,7 +9,7 @@ local confs = {
   "ts",
   "lsp",
   "filemanage",
-  "snippets",
+  --"snippets",
   "vimtex",
   "discord-rpc",
   "fugitive",
