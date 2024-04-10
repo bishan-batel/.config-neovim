@@ -9,6 +9,19 @@ return require('packer').startup(function(use)
 	use 'ARM9/arm-syntax-vim'
 	use 'andweeb/presence.nvim'
 
+	-- use 'voldikss/vim-floaterm'
+	use {
+		'stevearc/overseer.nvim',
+		config = function() require('overseer').setup() end
+	}
+	use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+		require("toggleterm").setup()
+	end }
+
+	use {
+		'numToStr/Comment.nvim',
+	}
+
 
 	use "nvim-lua/plenary.nvim"
 	use {
@@ -61,6 +74,8 @@ return require('packer').startup(function(use)
 		requires = { { 'hrsh7th/vim-vsnip', opt = true }, { 'hrsh7th/vim-vsnip-integ', opt = true } }
 	}
 
+	-- use	'cdelledonne/vim-cmake'
+	use 'Civitasv/cmake-tools.nvim'
 
 	use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview' }
 
@@ -106,7 +121,9 @@ return require('packer').startup(function(use)
 	use 'elkowar/yuck.vim'
 	use 'wakatime/vim-wakatime'
 
+
 	use { "catppuccin/nvim", as = "catppuccin" }
+
 	use 'mbbill/undotree'
 	use 'tpope/vim-fugitive'
 
@@ -165,4 +182,6 @@ return require('packer').startup(function(use)
 	use 'folke/trouble.nvim'
 	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
 	use 'theHamsta/nvim-dap-virtual-text'
+
+	use 'christoomey/vim-tmux-navigator'
 end)

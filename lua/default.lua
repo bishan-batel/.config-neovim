@@ -43,3 +43,6 @@ vim.api.nvim_create_user_command("T", function(opts)
 	vim.cmd [[ wincmd j]]
 	vim.cmd("term " .. opts.args)
 end, { nargs = "?" })
+
+
+require("Comment").setup()

@@ -157,3 +157,16 @@ vim.keymap.set('n', '<C-Tab>', ':e #<cr>')
 vim.cmd [[set conceallevel=1]]
 vim.cmd [[syntax enable]]
 vim.cmd [[colorscheme catppuccin-mocha]]
+
+vim.keymap.set('n', '<C-Tab>', ':e #<cr>')
+
+
+-- Float term
+-- vim.cmd [[ let g:floaterm_keymap_toggle = '<leader>`' ]]
+-- vim.cmd [[ let g:floaterm_wintype = 'split' ]]
+vim.keymap.set('t', '<Esc>', "<C-\\><C-n>", { silent = true });
+
+
+vim.keymap.set('n', '<leader><Space>d', function()
+  require("notify").dismiss()
+end);

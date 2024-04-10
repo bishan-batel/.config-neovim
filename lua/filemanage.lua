@@ -27,11 +27,7 @@ vim.keymap.set('n', '<leader>fn', ":Telescope notify<cr>")
 local harpoon = require('harpoon')
 harpoon:setup()
 vim.keymap.set('n', '<leader>a', function()
-  harpoon:list():append()
-end)
-
-vim.keymap.set('n', '<leader>a', function()
-  harpoon:list():append()
+  harpoon:list():add()
 end)
 
 

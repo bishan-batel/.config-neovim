@@ -16,8 +16,12 @@ local confs = {
   "ui",
   "debug-adapt",
   "neovide",
+  "tmux"
 }
 
 for _, file in pairs(confs) do
   require(file)
 end
+
+
+

@@ -1,7 +1,6 @@
 local lsp_zero = require('lsp-zero')
 
-
-lsp_zero.on_attach(function(client, bufnr)
+local on_attach = function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
@@ -26,7 +25,10 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.api.nvim_create_user_command("Fmt", [[:LspZeroFormat]], {})
 
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-end)
+end
+
+lsp_zero.on_attach(on_attach)
+
 
 -- to learn how to use mason.nvim with lsp-zero
 -- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
@@ -37,9 +39,19 @@ require('mason-lspconfig').setup({
     lsp_zero.default_setup,
     lua_ls = function()
       require('lspconfig').lua_ls.setup(lsp_zero.nvim_lua_ls())
+
     end,
   }
 })
+
+require("lspconfig").clangd.setup {
+  on_attach = on_attach,
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  cmd = {
+    'clangd',
+    '--offset-encoding=utf-16'
+  }
+}
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
@@ -133,7 +145,6 @@ require("trouble").setup({
 })
 
 
-
 -- Lua
 vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
 vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
@@ -141,3 +152,13 @@ vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document
 vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
 vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+
+
+require("lang_specific.cmake")
+
+-- vim.keymap.set("n", '<leader>cg', ":CMakeGenerate<cr>")
+-- vim.keymap.set("n", '<leader>cb', ":CMakeBuild<cr>")
+-- vim.keymap.set("n", '<leader>cq', ":CMakeClose<cr>")
+-- vim.keymap.set("n", '<leader>cc', ":CMakeClean<cr>")
+-- vim.keymap.set("n", '<leader>cr', ":CMakeRun ")
+
