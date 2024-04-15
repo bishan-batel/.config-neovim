@@ -27,9 +27,11 @@ notify.setup {
 }
 
 
-require("catppuccin").setup({
-  transparent_background = true
-})
+if not vim.g.neovide then
+  require("catppuccin").setup({
+    transparent_background = true
+  })
+end
 
 
 --nightfox
@@ -167,6 +169,8 @@ vim.keymap.set('n', '<C-Tab>', ':e #<cr>')
 vim.keymap.set('t', '<Esc>', "<C-\\><C-n>", { silent = true });
 
 
-vim.keymap.set('n', '<leader><Space>d', function()
+vim.keymap.set('n', '<leader>ad', function()
   require("notify").dismiss()
 end);
+
+require("lang_specific.overseer")

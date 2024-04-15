@@ -10,10 +10,7 @@ return require('packer').startup(function(use)
 	use 'andweeb/presence.nvim'
 
 	-- use 'voldikss/vim-floaterm'
-	use {
-		'stevearc/overseer.nvim',
-		config = function() require('overseer').setup() end
-	}
+	use { 'stevearc/overseer.nvim' }
 	use { "akinsho/toggleterm.nvim", tag = '*', config = function()
 		require("toggleterm").setup()
 	end }
@@ -37,7 +34,7 @@ return require('packer').startup(function(use)
 		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 	}
 
-	use 'nvim-tree/nvim-web-devicons'
+	use { 'nvim-tree/nvim-web-devicons' }
 
 	use 'mboughaba/i3config.vim'
 
@@ -79,18 +76,18 @@ return require('packer').startup(function(use)
 
 	use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview' }
 
-	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+	-- use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+
+
+
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = function()
+			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+			ts_update()
+		end,
+	}
 	use 'nvim-treesitter/playground'
-
-
-
-	--	use {
-	--		'nvim-treesitter/nvim-treesitter',
-	--		run = function()
-	--			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-	--			ts_update()
-	--		end,
-	--	}
 
 	use {
 		'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
@@ -184,4 +181,7 @@ return require('packer').startup(function(use)
 	use 'theHamsta/nvim-dap-virtual-text'
 
 	use 'christoomey/vim-tmux-navigator'
+
+	-- use 'bishan-batel/tree-sitter-gooscript'
+	use '~/code/gooscript/tree-sitter'
 end)

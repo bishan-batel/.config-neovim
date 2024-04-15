@@ -1,7 +1,3 @@
--- vim.cmd [[ autocmd BufNewFile,BufRead *.gosling set filetype=gosling ]]
--- vim.cmd [[ autocmd BufNewFile,BufRead *.gs set filetype=gosling ]]
--- vim.treesitter.language.register('gosling', 'gosling')
-
 -- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 
 --------parser_config.gosling = {
@@ -16,7 +12,7 @@
 
 
 require 'nvim-treesitter.configs'.setup {
-  ensure_installed = { },
+  ensure_installed = {},
   sync_install = false,
   auto_install = true,
   highlight = {
@@ -34,3 +30,5 @@ require 'nvim-treesitter.configs'.setup {
     updatetime = 25,
   }
 }
+
+require("gooscript").setup()
