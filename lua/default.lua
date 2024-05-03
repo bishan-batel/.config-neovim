@@ -7,7 +7,7 @@ function map(mode, lhs, rhs, opts)
 end
 
 vim.g.mapleader = "m"
-vim.opt.shell = "/usr/bin/fish"
+vim.opt.shell = "nu"
 
 vim.opt.modeline = true
 vim.opt.modelines = 5

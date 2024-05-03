@@ -8,6 +8,7 @@ return require('packer').startup(function(use)
 	use "EdenEast/nightfox.nvim" -- Packer
 	use 'ARM9/arm-syntax-vim'
 	use 'andweeb/presence.nvim'
+	use "rebelot/kanagawa.nvim"
 
 	-- use 'voldikss/vim-floaterm'
 	use { 'stevearc/overseer.nvim' }
